@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, Link, useNavigate, useParams } from 'react-router-dom'
+import { useState } from 'react'
 
 const PageShell: React.FC<{ title: string; back?: boolean }> = ({ title, back, children }) => {
   const navigate = useNavigate()
@@ -20,13 +21,36 @@ const PageShell: React.FC<{ title: string; back?: boolean }> = ({ title, back, c
 const Home: React.FC = () => {
   return (
     <PageShell title="Multiplication Master">
-      <div className="flex flex-col gap-4">
-        <div className="text-center">
+      <div className="flex flex-col gap-5">
+        <div className="text-center mt-2">
           <p className="text-sm text-purple-700">An educational web app</p>
         </div>
-        <Link to="/learn" className="block rounded-2xl bg-purple-600 text-white text-lg font-bold py-5 text-center active:scale-[0.98]">Learn</Link>
-        <Link to="/practice" className="block rounded-2xl bg-pink-600 text-white text-lg font-bold py-5 text-center active:scale-[0.98]">Practice</Link>
-        <p className="text-center text-xs text-gray-500 mt-6">Designed by Rebeca Martinez with ❤️</p>
+
+        <section className="grid gap-4">
+          <article className="rounded-2xl border bg-gray-50 px-4 py-4">
+            <div className="flex items-center gap-3">
+              <div className="h-14 w-20 rounded-xl bg-purple-200/60 flex items-center justify-center text-2xl">🔺</div>
+              <div className="flex-1">
+                <h2 className="text-base font-semibold">Learn</h2>
+                <p className="text-sm text-gray-600">All the multiplication tables so you can learn and review.</p>
+              </div>
+              <Link to="/learn" className="shrink-0 rounded-full bg-purple-700 px-4 py-2 text-white text-sm font-semibold active:scale-95">Start</Link>
+            </div>
+          </article>
+
+          <article className="rounded-2xl border bg-gray-50 px-4 py-4">
+            <div className="flex items-center gap-3">
+              <div className="h-14 w-20 rounded-xl bg-purple-200/60 flex items-center justify-center text-2xl">🔧</div>
+              <div className="flex-1">
+                <h2 className="text-base font-semibold">Practice</h2>
+                <p className="text-sm text-gray-600">Test your knowledge by practicing with random operations.</p>
+              </div>
+              <Link to="/practice" className="shrink-0 rounded-full bg-purple-700 px-4 py-2 text-white text-sm font-semibold active:scale-95">Start</Link>
+            </div>
+          </article>
+        </section>
+
+        <p className="text-center text-xs text-gray-500 mt-2">Designed by Rebeca Martinez with ❤️</p>
       </div>
     </PageShell>
   )
@@ -57,7 +81,7 @@ const LearnDetail: React.FC = () => {
   return (
     <PageShell title={`Table of ${n}`} back>
       <div className="flex flex-col items-center gap-4">
-        <img src="https://picsum.photos/seed/kids-bikes/400/160" alt="Kids learning" className="w-full rounded-xl object-cover" />
+        <img src="https://picsum.photos/seed/kids-bikes/800/240" alt="Kids learning" className="w-full rounded-xl object-cover" />
         <ul className="w-full text-center text-lg">
           {rows.map((i) => (
             <li key={i} className="py-1">{n} × {i} = {n * i}</li>
@@ -107,9 +131,9 @@ const Practice: React.FC = () => {
         {checked === true && <p className="text-green-600 font-semibold">Correct!!</p>}
         {checked === false && <p className="text-red-600 font-semibold">Incorrect. It's {correct}</p>}
         {!showNext ? (
-          <button onClick={onCheck} className="rounded-full bg-purple-600 text-white font-bold px-8 py-3 active:scale-95">Check</button>
+          <button onClick={onCheck} className="rounded-full bg-purple-700 text-white font-bold px-8 py-3 active:scale-95">Check</button>
         ) : (
-          <button onClick={next} className="rounded-full bg-purple-600 text-white font-bold px-8 py-3 active:scale-95">Next</button>
+          <button onClick={next} className="rounded-full bg-purple-700 text-white font-bold px-8 py-3 active:scale-95">Next</button>
         )}
       </div>
     </PageShell>
