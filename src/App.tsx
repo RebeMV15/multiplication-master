@@ -1,7 +1,9 @@
 import { BrowserRouter, Routes, Route, Link, useNavigate, useParams } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, type ReactNode } from 'react'
 
-const PageShell: React.FC<{ title: string; back?: boolean }> = ({ title, back, children }) => {
+type PageShellProps = { title: string; back?: boolean; children?: ReactNode }
+
+const PageShell = ({ title, back, children }: PageShellProps) => {
   const navigate = useNavigate()
   return (
     <div className="mx-auto max-w-sm min-h-dvh bg-white text-gray-800 shadow-sm">
